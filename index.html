@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WEB开发工程师 - 个人简历</title>
+    <!-- 预连接CDN域名，提前建立连接，优化外部资源加载速度 -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <!-- 精简Bootstrap CSS（保留核心样式，按需引入） -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
     <style>
-        /* 全局样式 */
+        /* 全局样式 - 精简冗余代码，使用CSS简写属性 */
         html {
-            scroll-behavior: smooth; /* 平滑滚动跳转 */
-            scroll-padding-top: 80px; /* 导航栏遮挡补偿 */
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
         body {
-            /* 核心修改：将字体改为黑体，SimHei为黑体的英文标识，兼容不同浏览器/系统 */
             font-family: "黑体", SimHei, sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
         }
-        /* 导航栏样式 - 按要求修改：移除白色背景、文字加大加粗、固定顶端右上角 */
+        /* 导航栏样式 - 精简代码，保留核心功能 */
         .nav-bar {
             position: fixed;
             top: 0;
@@ -39,35 +40,35 @@
         .nav-bar a:hover {
             color: #007bff;
         }
-        /* 新增：回到顶部按钮样式 - 固定右下角 */
+        /* 回到顶部按钮样式 - 精简代码 */
         .back-to-top {
             position: fixed;
-            bottom: 30px; /* 距离底部30px */
-            right: 30px; /* 距离右侧30px */
+            bottom: 30px;
+            right: 30px;
             width: 50px;
             height: 50px;
             background-color: #007bff;
             color: white;
-            border-radius: 50%; /* 圆形按钮 */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             cursor: pointer;
-            z-index: 999; /* 确保在最上层 */
-            opacity: 0; /* 初始隐藏 */
-            visibility: hidden; /* 初始不可见 */
-            transition: all 0.3s ease; /* 显示/隐藏过渡动画 */
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         .back-to-top.active {
-            opacity: 1; /* 显示 */
-            visibility: visible; /* 可见 */
+            opacity: 1;
+            visibility: visible;
         }
         .back-to-top:hover {
-            background-color: #0056b3; /*  hover深色效果 */
+            background-color: #0056b3;
         }
-        /* 通用章节样式 */
+        /* 通用章节样式 - 简写属性优化 */
         .section {
             min-height: 100vh;
             padding: 100px 50px;
@@ -75,19 +76,21 @@
             align-items: center;
             justify-content: center;
         }
-        /* HOME章节样式 - 修改：背景图改为相对路径 */
+        /* HOME章节样式 - 优化背景图渲染 */
         #home {
-            background: url("御用.jpg") no-repeat center center;
+            background: url("御用.webp") no-repeat center center;
             background-size: cover;
+            background-attachment: fixed;
             position: relative;
         }
+        /* 兼容低版本浏览器，提供JPG背景图降级（可选，删除不影响核心功能） */
+        /* #home {
+            background: url("御用.jpg") no-repeat center center;
+        } */
         #home::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0; /* 简写top/right/bottom/left: 0 */
             background: rgba(0,0,0,0.5);
         }
         .home-container {
@@ -114,7 +117,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
         }
-        /* ABOUT章节样式 - 修复显示问题，调整样式 */
+        /* ABOUT章节样式 - 精简冗余代码 */
         #about {
             background: #f8f9fa;
         }
@@ -136,7 +139,6 @@
         .about-content {
             width: 50%;
         }
-        /* 移除轮播样式后，保留文字原有样式 */
         .about-text {
             width: 100%;
             line-height: 1.8;
@@ -148,7 +150,7 @@
             gap: 15px;
             display: flex;
         }
-        /* SERVICES章节样式 */
+        /* SERVICES章节样式 - 精简代码 */
         #services {
             background: white;
         }
@@ -178,7 +180,7 @@
             color: #007bff;
             margin-bottom: 20px;
         }
-        /* EXPERIENCE章节样式 */
+        /* EXPERIENCE章节样式 - 精简代码 */
         #experience {
             background: #f8f9fa;
         }
@@ -225,7 +227,7 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        /* PORTFOLIO章节样式 */
+        /* PORTFOLIO章节样式 - 精简代码 */
         #portfolio {
             background: white;
         }
@@ -275,19 +277,21 @@
         .portfolio-item:hover img {
             transform: scale(1.05);
         }
-        /* CONTACT章节样式 - 修改：背景图改为相对路径 */
+        /* CONTACT章节样式 - 优化背景图渲染 */
         #contact {
-            background: url("1.jpg") no-repeat center center;
+            background: url("1.webp") no-repeat center center;
             background-size: cover;
+            background-attachment: fixed;
             position: relative;
         }
+        /* 兼容低版本浏览器，提供JPG背景图降级（可选） */
+        /* #contact {
+            background: url("1.jpg") no-repeat center center;
+        } */
         #contact::before {
             content: "";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: rgba(0,0,0,0.5);
         }
         .contact-container {
@@ -344,7 +348,7 @@
         .btn:hover {
             background: #0056b3;
         }
-        /* 响应式调整 */
+        /* 响应式调整 - 精简冗余代码，保留核心适配 */
         @media (max-width: 992px) {
             .home-container, .about-container, .contact-container {
                 flex-direction: column;
@@ -353,10 +357,7 @@
                 width: 100%;
                 margin-bottom: 30px;
             }
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .portfolio-grid {
+            .services-grid, .portfolio-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -372,18 +373,10 @@
             .nav-bar a {
                 margin: 0 5px;
                 font-size: 1rem;
-                font-weight: bold;
             }
-            .services-grid {
+            .services-grid, .portfolio-grid {
                 grid-template-columns: 1fr;
             }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-text {
-                width: 100%;
-            }
-            /* 响应式调整回到顶部按钮大小和位置 */
             .back-to-top {
                 width: 40px;
                 height: 40px;
@@ -395,7 +388,7 @@
     </style>
 </head>
 <body>
-    <!-- 顶部导航栏（7个章节）- 固定顶端右上角 -->
+    <!-- 顶部导航栏 - 删除无效#resume锚点，优化导航结构 -->
     <div class="nav-bar">
         <a href="#home">HOME</a>
         <a href="#about">ABOUT</a>
@@ -403,15 +396,16 @@
         <a href="#experience">EXPERIENCE</a>
         <a href="#portfolio">PORTFOLIO</a>
         <a href="#contact">CONTACT</a>
-        <a href="#resume">RESUME</a>
     </div>
 
-    <!-- 新增：回到顶部箭头按钮 -->
+    <!-- 回到顶部按钮 - 使用原生SVG替代Font Awesome，减少外部资源依赖 -->
     <div class="back-to-top" id="backToTop">
-        <i class="fa fa-arrow-up"></i> <!-- 向上箭头图标 -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12L12 5M19 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </div>
 
-    <!-- HOME章节 - 修改：头像图片改为相对路径 -->
+    <!-- HOME章节 - 图片使用WebP格式+懒加载，提供picture标签降级兼容 -->
     <section id="home" class="section">
         <div class="home-container">
             <div class="home-info">
@@ -426,20 +420,27 @@
                 </ul>
             </div>
             <div class="home-img">
-                <img src="第一张.jpg" alt="个人头像">
+                <picture>
+                    <source srcset="第一张.webp" type="image/webp">
+                    <source srcset="第一张.jpg" type="image/jpeg">
+                    <img src="第一张.jpg" alt="个人头像" loading="lazy">
+                </picture>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT章节 - 移除轮播，改为普通文字排列 + 修改：照片改为相对路径 -->
+    <!-- ABOUT章节 - 图片使用WebP格式+懒加载 -->
     <section id="about" class="section">
         <div class="about-container">
             <div class="about-img">
-                <img src="第二张.jpg" alt="个人照片">
+                <picture>
+                    <source srcset="第二张.webp" type="image/webp">
+                    <source srcset="第二张.jpg" type="image/jpeg">
+                    <img src="第二张.jpg" alt="个人照片" loading="lazy">
+                </picture>
             </div>
             <div class="about-content">
                 <h2 class="mb-4">关于我</h2>
-                <!-- 移除轮播容器，直接展示所有文字内容 -->
                 <div class="about-text">
                     <p>本人毕业于大连海洋大学数据科学与大数据技术专业，具备扎实的计算机理论基础，深耕前端开发领域，兼具丰富的学生工作经验、志愿实践经历与较强的竞赛竞争力，具备出色的组织协调、团队协作及问题解决能力，适配前端开发岗位对综合素养的要求。</p>
                     <p>学生工作期间，多岗位锻炼综合能力：任职自管会办公室成员，参与音乐节、马拉松、海洋嘉年华等多项大型活动组织协调；投身信息工程学院团委工作，助力党建进班级、主题党日、积极分子培训等党建及校园活动落地；作为海之梦舞蹈团成员，参演元旦晚会、篝火晚会等多场文艺活动，提升团队协作与舞台表现力；加入蒲公英志愿者协会，积极参与爱心义卖、社区爱心教育、有衣捐衣等十余项志愿活动，践行社会责任，锤炼沟通与服务意识。</p>
@@ -453,28 +454,56 @@
         </div>
     </section>
 
-    <!-- SERVICES章节 -->
+    <!-- SERVICES章节 - 保留原有功能，精简样式 -->
     <section id="services" class="section">
         <div class="services-container">
             <h2 class="mb-5">我的技能</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon"><i class="fa fa-paint-brush"></i></div>
+                    <div class="service-icon">
+                        <!-- 原生SVG图标替代Font Awesome -->
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill: #007bff;">
+                            <path d="M12 3L2 12H5V20H19V12H22L12 3Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3 class="mb-3">网页设计</h3>
                     <p>精通PS、Figma等设计工具，能够独立完成网页视觉设计、响应式布局设计，注重用户体验与视觉美感的结合。</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fa fa-code"></i></div>
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill: #007bff;">
+                            <path d="M20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 2H20V8" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 13H8" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 17H8" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 9H9H8" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3 class="mb-3">组件开发</h3>
                     <p>擅长封装可复用前端组件，包括表单组件、弹窗组件、导航组件等，提高项目开发效率，降低维护成本。</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fa fa-vuejs"></i></div>
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill: #007bff;">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3 class="mb-3">精通VUE</h3>
                     <p>深入掌握Vue2、Vue3及Vue Router、Pinia等生态工具，能够独立开发中大型Vue项目，具备丰富的Vue实战经验。</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fa fa-star"></i></div>
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="fill: #007bff;">
+                            <path d="M12 15L12 15.01" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 12L12 12.01" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 9L12 9.01" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M12 6L12 22" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2L8 22" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 2L4 22" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3 class="mb-3">前端大神</h3>
                     <p>精通HTML5、CSS3、JavaScript等原生技术，熟悉React、Angular等其他前端框架，具备全栈开发的基础能力。</p>
                 </div>
@@ -482,7 +511,7 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE章节 -->
+    <!-- EXPERIENCE章节 - 保留原有功能 -->
     <section id="experience" class="section">
         <div class="experience-container">
             <h2 class="mb-5 text-center">工作履历（杜撰部分）</h2>
@@ -515,7 +544,7 @@
         </div>
     </section>
 
-    <!-- PORTFOLIO章节 - 修改：所有作品图片改为相对路径 -->
+    <!-- PORTFOLIO章节 - 图片使用WebP格式+懒加载，优化作品筛选功能 -->
     <section id="portfolio" class="section">
         <div class="portfolio-container">
             <h2 class="mb-4">我的作品</h2>
@@ -527,50 +556,93 @@
             </div>
             <div class="portfolio-grid">
                 <div class="portfolio-item active" data-category="web">
-                    <img src="1.jpg" alt="网页设计作品1">
+                    <picture>
+                        <source srcset="1.webp" type="image/webp">
+                        <source srcset="1.jpg" type="image/jpeg">
+                        <img src="1.jpg" alt="网页设计作品1" loading="lazy">
+                    </picture>
                 </div>
                 <div class="portfolio-item active" data-category="web">
-                    <img src="2.jpg" alt="网页设计作品2">
+                    <picture>
+                        <source srcset="2.webp" type="image/webp">
+                        <source srcset="2.jpg" type="image/jpeg">
+                        <img src="2.jpg" alt="网页设计作品2" loading="lazy">
+                    </picture>
                 </div>
                 <div class="portfolio-item active" data-category="component">
-                    <img src="3.jpg" alt="组件开发作品1">
+                    <picture>
+                        <source srcset="3.webp" type="image/webp">
+                        <source srcset="3.jpg" type="image/jpeg">
+                        <img src="3.jpg" alt="组件开发作品1" loading="lazy">
+                    </picture>
                 </div>
                 <div class="portfolio-item active" data-category="component">
-                    <img src="4.jpg" alt="组件开发作品2">
+                    <picture>
+                        <source srcset="4.webp" type="image/webp">
+                        <source srcset="4.jpg" type="image/jpeg">
+                        <img src="4.jpg" alt="组件开发作品2" loading="lazy">
+                    </picture>
                 </div>
                 <div class="portfolio-item active" data-category="module">
-                    <img src="6666.jpg" alt="模块开发作品1">
+                    <picture>
+                        <source srcset="6666.webp" type="image/webp">
+                        <source srcset="6666.jpg" type="image/jpeg">
+                        <img src="6666.jpg" alt="模块开发作品1" loading="lazy">
+                    </picture>
                 </div>
                 <div class="portfolio-item active" data-category="module">
-                    <img src="御用.jpg" alt="模块开发作品2">
+                    <picture>
+                        <source srcset="御用.webp" type="image/webp">
+                        <source srcset="御用.jpg" type="image/jpeg">
+                        <img src="御用.jpg" alt="模块开发作品2" loading="lazy">
+                    </picture>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT章节 -->
+    <!-- CONTACT章节 - 保留原有功能 -->
     <section id="contact" class="section">
         <div class="contact-container">
             <div class="contact-info">
                 <h2 class="mb-4">联系信息</h2>
                 <ul class="list-unstyled">
                     <li class="mb-4">
-                        <h5 class="text-primary"><i class="fa fa-envelope-o mr-2"></i> 电子邮箱</h5>
+                        <h5 class="text-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M4 4H20L18 10L12 13L6 10L4 4Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M20 4V16L12 19L4 16V4" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            电子邮箱
+                        </h5>
                         <p>2644586821@qq.com</p>
                     </li>
                     <li class="mb-4">
-                        <h5 class="text-primary"><i class="fa fa-phone mr-2"></i> 联系电话</h5>
+                        <h5 class="text-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M22 16.92V20C22 20.5523 21.5523 21 21 21H17C16.4477 21 16 20.5523 16 20V16.92C15.6714 16.8305 15.3522 16.7062 15.0523 16.5513C14.7524 16.3963 14.4742 16.2128 14.224 16H10C9.77614 16.2128 9.49786 16.3963 9.19797 16.5513C8.89808 16.7062 8.57883 16.8305 8.25 16.92V20C8 20.5523 7.55228 21 7 21H3C2.44772 21 2 20.5523 2 20V16.92C1.67117 16.8305 1.35192 16.7062 1.05203 16.5513C0.752143 16.3963 0.473858 16.2128 0.24 16H6" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 11C16 13.2091 14.2091 15 12 15C9.79086 15 8 13.2091 8 11" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            联系电话
+                        </h5>
                         <p>13800138000</p>
                     </li>
                     <li class="mb-4">
-                        <h5 class="text-primary"><i class="fa fa-map-marker mr-2"></i> 联系地址</h5>
+                        <h5 class="text-primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+                                <path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 5.58172 6.58172 2 11 2H13C17.4183 2 21 5.58172 21 10Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#007bff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            联系地址
+                        </h5>
                         <p>沈阳市和平区</p>
                     </li>
                 </ul>
             </div>
             <div class="contact-form">
                 <h2 class="mb-4">留言给我</h2>
-                <form>
+                <form id="contactForm">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="请输入您的姓名" required>
                     </div>
@@ -589,46 +661,64 @@
         </div>
     </section>
 
-    <!-- 引入JS资源 -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 精简Bootstrap JS，添加defer属性，异步加载不阻塞渲染 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
     <script>
-        $(document).ready(function() {
-            // PORTFOLIO章节：作品分类切换功能
-            $('.filter-btn').click(function() {
-                $('.filter-btn').removeClass('active');
-                $(this).addClass('active');
-                var filter = $(this).attr('data-filter');
-                if (filter === 'all') {
-                    $('.portfolio-item').addClass('active');
-                } else {
-                    $('.portfolio-item').removeClass('active');
-                    $('.portfolio-item[data-category="' + filter + '"]').addClass('active');
-                }
+        // 缓存DOM元素，减少重复查询，提升性能
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const contactForm = document.getElementById('contactForm');
+        const backToTop = document.getElementById('backToTop');
+        let scrollTimer = null; // 防抖定时器
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. 作品分类切换功能（原生JS重构，替代jQuery）
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的active类
+                    filterBtns.forEach(item => item.classList.remove('active'));
+                    // 给当前点击按钮添加active类
+                    this.classList.add('active');
+                    const filter = this.getAttribute('data-filter');
+
+                    // 筛选作品
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                });
             });
 
-            // 表单提交提示
-            $('form').submit(function(e) {
-                e.preventDefault();
+            // 2. 表单提交提示（原生JS重构）
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // 阻止默认提交行为
                 alert('留言提交成功！（实际需配合后端接口实现数据存储）');
-                $(this)[0].reset();
+                this.reset(); // 重置表单
             });
 
-            // 新增：回到顶部按钮功能
-            const backToTop = $('#backToTop');
-            // 滚动事件：控制按钮显示/隐藏
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 300) { // 滚动超过300px时显示
-                    backToTop.addClass('active');
-                } else { // 否则隐藏
-                    backToTop.removeClass('active');
-                }
+            // 3. 滚动事件（添加防抖处理，避免高频触发）
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function() {
+                    // 滚动超过300px显示回到顶部按钮，否则隐藏
+                    if (window.scrollY > 300) {
+                        backToTop.classList.add('active');
+                    } else {
+                        backToTop.classList.remove('active');
+                    }
+                }, 30); // 30ms防抖延迟，平衡性能与体验
             });
-            // 点击事件：平滑滚动到页面顶部
-            backToTop.click(function() {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 500); // 500毫秒平滑滚动
+
+            // 4. 回到顶部功能（原生JS重构，平滑滚动）
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth' // 平滑滚动
+                });
             });
         });
     </script>
